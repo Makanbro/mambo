@@ -1,4 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday 🎉</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            overflow: hidden;
+            text-align: center;
+            color: white;
+        }
+
+        #app {
+            padding-top: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        img {
+            width: 150px;
+        }
+
+        h1 {
+            font-size: 28px;
+            padding: 0 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #yes {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        #no {
+            background: #555;
+            color: white;
+            position: absolute;
+        }
+
+        /* 🎉 confetti */
+        #ribbon-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .ribbon {
+            position: absolute;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="ribbon-container"></div>
+
+<audio id="music" autoplay loop>
+    <source src="nastelbom-happy-birthday-471481.mp3" type="audio/mpeg">
+</audio>
+
+<div id="app">
+    <img id="gambar" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXp6aXJiYWdidXZlcTQwdGUxaXgzeGJrMDA1dHJlYnNwa3NmaWQ1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U0475P2diaBOsNOq22/giphy.gif">
+    <h1 id="text">Eh aku ada sesuatu buat kamu </h1>
+    <button onclick="nextText()">apa tu? ➡️</button>
+</div>
+
 <script>
+
 let step = 0;
 
 let messages = [
@@ -29,7 +120,8 @@ function createRibbon() {
         container.appendChild(ribbon);
     }
 }
-createRibbon();
+
+window.onload = createRibbon;
 
 function nextText() {
     if (step < messages.length) {
@@ -50,7 +142,7 @@ function showGift() {
     `;
 }
 
-// 🎁 buka kado (FIX DI SINI)
+// 🎁 buka kado
 function openGift() {
     document.getElementById("app").innerHTML = `
         <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTBmYWhsZXplNzcyMW15ODZvdG5mYXVnY2cwcGtsN3kwdXk1MDg2MyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/jfKiMjWolBzuWkdbw0/giphy.webp">
@@ -110,10 +202,14 @@ function finalPage() {
     `;
 }
 
-// autoplay fix
+// 🔊 autoplay fix
 document.body.addEventListener("click", function() {
     let music = document.getElementById("music");
     music.volume = 0.3;
     music.play();
 }, { once: true });
+
 </script>
+
+</body>
+</html>
